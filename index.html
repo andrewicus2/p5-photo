@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="p5.js"></script>
+    <script src="p5.sound.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8" />
+    <script src="sketch.js"></script>
+    <link rel="icon" type="image/x-icon" href="icons/favi.svg">
+    <title>p5 Photo</title>
+    <script src="uploadedImg.js"></script>
+   
+
+  </head>
+  <body>
+    <div id='menu-bar'>
+      <div id='apple-icon-container' onClick = "openAboutMenu()">
+        <svg id="apple-icon" width="14" height="16" viewBox="0 0 10 12" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M6.1488 0.272491H7.1488V1.27249H6.1488V2.27289H5.1488V3.27289H7.14099H8.14099V4.27289H9.14099V5.27289H7.14099V7.27289H9.14099V9.27289H8.14099V10.2729H7.14099V11.2729H5.14099V10.2729H4.1488V11.2729H2.1488V10.2729H1.14618V9.27289H0.151367V4.27289H1.14618V3.27289H4.14618V4.27289H5.14099V3.27289H4.1488V1.27289H5.1488V0.272888L6.1488 0.272491Z" fill="currentColor"/>
+        </svg>    
+      </div>    
+      <div class = 'menu-bar-item' onClick = ''>
+        <p  id = "">p5 Photo</p>
+      </div>
+      <div class = 'menu-bar-item' onClick = 'menuOpen("file-sub-menu")'>
+        <p  id = "file-sub-menu-title">File</p>
+        <ul class = 'menu-bar-sub' id = "file-sub-menu">
+          <li onClick = 'clearCanvasConfirm()'>New</li>
+          <label for="image-up">
+            <li>Import</li>
+          </label>
+          <li onClick = 'saveCanvas()'>Save</li>
+        </ul>
+      </div>
+      <div class = 'menu-bar-item' onClick = "menuOpen('edit-sub-menu')">
+        <p id = "edit-sub-menu-title">Edit</p>
+        <ul class = 'menu-bar-sub' id = "edit-sub-menu">
+          <li onClick = 'lockCanvasConfirm()'>Filters</li>
+        </ul>
+      </div>
+      <div class = 'menu-bar-item' onClick = "menuOpen('goodies-sub-menu')">
+        <p id = "goodies-sub-menu-title">Goodies</p>
+        <ul class = 'menu-bar-sub' id = "goodies-sub-menu">
+          <li onClick = 'dan()'>Dan Mode</li>
+        </ul>
+      </div>
+    </div>
+    <div id='photoshop-container'>
+      <div id='toolbars'>
+        <div id='ui-container'>
+          <div id = 'hand' onClick = 'changeTool(0)' class = 'toolbar-element'>
+            <svg width="19" height="19" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M7.87659 0.5H9.87659V1.5H7.87659V0.5ZM5.87659 2.5H6.87659V1.5H7.87659V6.5H6.87659V4.5H5.87659V2.5ZM3.87659 2.5V1.5H5.87659V2.5H3.87659ZM3.87659 4.5H2.87659V2.5H3.87659V4.5ZM4.87659 6.5V4.5H3.87659V6.5H1.87659V7.5H0.876587V9.5H1.87659V10.5H2.87659V12.5H3.87659V13.5H4.87659V14.5H5.87659V16.5H6.87659V14.5H5.87659V13.5H4.87659V12.5H3.87659V10.5H2.87659V9.5H1.87659V7.5H3.87659V8.5H4.87659V9.5H5.87659V6.5H4.87659ZM4.87659 6.5H3.87659V7.5H4.87659V6.5ZM12.8766 2.5H10.8766V6.5H9.87659V1.5H10.8766H12.8766V2.5ZM14.8766 4.5H13.8766V2.5H12.8766V7.5H13.8766V5.5H14.8766V4.5ZM15.8766 4.5H14.8766V3.5H15.8766V4.5ZM15.8766 8.5V4.5H16.8766V8.5H15.8766ZM14.8766 11.5V8.5H15.8766V11.5H14.8766ZM13.8766 13.5V11.5H14.8766V13.5H13.8766ZM13.8766 13.5V16.5H12.8766V13.5H13.8766Z" fill="currentColor"/>
+            </svg>
+          </div>
+
+          <label for="image-up">
+            <svg width="19" height="17" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0266 0.0169525H14.0266V2.01695L16.0266 2.01695V4.01695H14.0266V6.01695H12.0266V4.01695H10.0266V2.01695L12.0266 2.01695V0.0169525ZM1.02655 2.01695H9.02655V3.01695H1.02655V13.017H3.02655V12.017V11.017V10.017V9.01695H4.02655V8.01695H5.02655V7.01695H6.02655V8.01695H7.02655V9.01695H8.02655V10.017V11.017V12.017V13.017H11.0266V11.017H10.0266V8.01695H11.0266V7.01695H12.0266V8.01695H13.0266V11.017H12.0266V13.017H15.0266V7.01695H16.0266V13.017V14.017H15.0266H1.02655H0.0265503V13.017V3.01695V2.01695H1.02655Z" fill="currentColor"/>
+            </svg>              
+          </label>
+
+          <div id = 'pencil' onClick = 'changeTool(1)' class = 'toolbar-element'>
+            <svg width="13" height="19" viewBox="0 0 11 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M6.87659 2.49908V1.49908H9.87659V3.49908H8.87659V4.49908H6.87659V3.49908H5.87659V2.49908H6.87659ZM4.87659 4.49908V3.49908V2.49908H5.87659V0.499084H6.87659H9.87659V1.49908H10.8766V3.49908H9.87659V4.49908V5.49908H8.87659V7.49908H7.87659V5.49908H6.87659V4.49908H4.87659ZM3.87659 6.49908V4.49908H4.87659V6.49908H3.87659ZM3.87659 6.49908V8.49908H2.87659V6.49908H3.87659ZM6.87659 9.49908V7.49908H7.87659V9.49908H6.87659ZM5.87659 11.4991V9.49908H6.87659V11.4991H5.87659ZM4.87659 12.4991V11.4991H5.87659V12.4991H4.87659ZM1.87659 10.5009V12.4991H2.87659H3.87659H4.87659V13.4991H3.87659V14.4991H2.87659V15.4991H1.87659V16.5009H0.876587V10.5009H1.87659ZM1.87659 10.5009V8.50092H2.87659V10.5009H1.87659Z" fill="currentColor"/>
+              </svg>     
+          </div>
+
+          <!-- <div class = 'toolbar-element'>
+            <svg width="18" height="14" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M15 0H8V1H7V2H6V3H5V4H4V5H3V6H2V7H1V8H0V9V11V12H1H7H8V11H9V10H10V9H11V8H12V7H13V6H14V5H15V4H16V2H15V1V0ZM14 1H8V2H7V3H6V4H5V5H4V6H3V7H2V8H7H8V9H9V8H10V7H11V6H12V5H13V4H14V3H13V2H14V1ZM12 4V3H13V4H12ZM11 5V4H12V5H11ZM10 6V5H11V6H10ZM9 7H8V8H9V7ZM9 7V6H10V7H9ZM1 9V11H7V9H1Z" fill="currentColor"/>
+            </svg>              
+          </div> -->
+          
+          <div id = 'bucket' onClick = 'changeTool(2)' class = 'toolbar-element'>
+            <svg width="19" height="15" viewBox="0 0 17 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M4.02655 0H5.02655H6.02655V1H7.02655H8.02655V2H9.02655V3V6H8.02655V4H7.02655V3H6.02655V2H5.02655V1H4.02655V0ZM3.02655 2V1H4.02655V2H3.02655ZM2.02655 3V2H3.02655V3H2.02655ZM1.02655 4V3H2.02655V4H1.02655ZM1.02655 5H0.0265503V4H1.02655V5ZM2.02655 6H1.02655V5H2.02655V6ZM3.02655 7V6H2.02655V7H3.02655ZM4.02655 7V8H3.02655V7H4.02655ZM5.02655 6V7H4.02655V6H5.02655ZM6.02655 5V6H5.02655V5H6.02655ZM6.02655 5H7.02655V4H6.02655V5ZM10.0266 2H15.0266V12H1.02655V8H0.0265503V12V13H1.02655H15.0266H16.0266V12V2V1H15.0266H10.0266V2Z" fill="currentColor"/>
+            </svg>              
+          </div>      
+
+          <div id = 'filters' onClick = 'lockCanvasConfirm()' class = 'toolbar-element'>
+            <svg width="19" height="19" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3604 0.323608H7.36041V1.32361H6.36041V2.32361H5.36041V5.32361H6.36041V6.32361H7.36041V7.32361H10.3604V6.32361H11.3604V5.32361H12.3604V2.32361H11.3604V1.32361H10.3604V0.323608ZM1.86041 10.3236H2.86041V9.32361H5.86041V10.3236H6.86041V11.3236H7.86041V14.3236H6.86041V15.3236H5.86041V16.3236H2.86041V15.3236H1.86041V14.3236H0.860413V11.3236H1.86041V10.3236ZM10.8604 14.3236V15.3236H11.8604V16.3236H14.8604V15.3236H15.8604V14.3236H16.8604V11.3236H15.8604V10.3236H14.8604V9.32361H11.8604V10.3236H10.8604V11.3236H9.86041V14.3236H10.8604Z" fill="currentColor"/>
+            </svg>
+          </div>  
+
+          <div onClick = 'saveCanvas()' class = 'toolbar-element'>
+            <svg width="17" height="18" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M10.0266 1H9.02655V5L2.02655 5L2.02655 1L1.02655 1V15H2.02655V11V10H3.02655H11.0266H12.0266V11V15H13.0266V5V4H14.0266V5V15V16H13.0266H12.0266H11.0266H3.02655H2.02655H1.02655H0.0265503V15V1V0H1.02655H10.0266V1ZM11.0266 2H10.0266V1H11.0266V2ZM12.0266 3H11.0266V2H12.0266V3ZM12.0266 3V4H13.0266V3H12.0266ZM11.0266 15V11H3.02655V15H11.0266Z" fill="currentColor"/>
+              </svg>
+              
+            </div>              
+          
+
+            <div onClick = 'clearCanvasConfirm()' class = 'toolbar-element' id="last-element">
+              <svg width="15" height="18" viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M6.15503 0.868011H5.15503V1.86801H1.15503V2.86801L0.155029 2.86801V3.86801L1.15503 3.86801V14.868V15.868H11.155V14.868V3.86801H12.155V2.86801H11.155V1.86801H7.15503V0.868011H6.15503ZM10.155 3.86801H9.15503L9.15503 14.868H10.155L10.155 3.86801ZM8.15503 3.86801H6.65503L6.65503 14.868H8.15503L8.15503 3.86801ZM5.65503 3.86801H4.15503L4.15503 14.868H5.65503L5.65503 3.86801ZM3.15503 3.86801H2.15503L2.15503 14.868H3.15503L3.15503 3.86801Z" fill="currentColor"/>
+                </svg>            
+            </div>
+          <div id = 'ui-cover'></div>
+        </div>
+      </div>
+
+      <div id="sketch-holder">
+        <div id="sketch-menu-bar">
+          <div class="menu-bar-line"></div>
+          <div class="menu-bar-line"></div>
+          <div class="menu-bar-line"></div>
+          <div class="menu-bar-line"></div>
+          <div class="menu-bar-line"></div>
+          <div class="menu-bar-line"></div>
+          <div class="menu-bar-line"></div>
+          <h1>p5 Photo</h1>
+        </div>
+        <div class = 'defaultui' id='welcome-ui'>
+          <p>Welcome to p5 Photo. Click </p> 
+          <svg width="17" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0266 0.0169525H14.0266V2.01695L16.0266 2.01695V4.01695H14.0266V6.01695H12.0266V4.01695H10.0266V2.01695L12.0266 2.01695V0.0169525ZM1.02655 2.01695H9.02655V3.01695H1.02655V13.017H3.02655V12.017V11.017V10.017V9.01695H4.02655V8.01695H5.02655V7.01695H6.02655V8.01695H7.02655V9.01695H8.02655V10.017V11.017V12.017V13.017H11.0266V11.017H10.0266V8.01695H11.0266V7.01695H12.0266V8.01695H13.0266V11.017H12.0266V13.017H15.0266V7.01695H16.0266V13.017V14.017H15.0266H1.02655H0.0265503V13.017V3.01695V2.01695H1.02655Z" fill="currentColor"/>
+          </svg>    
+          <p> to upload an image and get started!</p>
+        </div>
+        <div class = 'subui' id='handui'>
+          <p class = 'tool-tip'>The hand tool is used to move, reorder, and delete images</p> 
+        </div>
+        <div class = 'subui' id='pencilui'>
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M14.3221 0.726852H0.322144V5.72685H14.3221V0.726852ZM0.322144 6.72685H14.3221V7.72685V8.72685V9.72685H0.322144V8.72685V7.72685V6.72685ZM14.3221 10.7269H0.322144V11.7269V12.7269H14.3221V11.7269V10.7269ZM0.322144 13.7269H14.3221V14.7269H0.322144V13.7269Z" fill="black"/>
+          </svg>            
+          <div id='slider-container'></div>
+          <label for="pencilColorPicker">
+          <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.0266 0H12.0266H13.0266H14.0266V1H13.0266H12.0266H11.0266V0ZM11.0266 1V2H10.0266V1H11.0266ZM11.0266 3.01013V2.01013H9.02655V2H8.02655V1.01013H7.02655H6.02655V2.01013H7.02655V3.01013H8.02655V4V4.02026H7.02655V5.01013H6.03668V6.01013H5.03668V7H4.03668V8.01013H3.03668V10H4.03668V9H5.03668V8H6.03668V7H7.03668V6H8.02655V5H9.02655V6H10.0164V7H9.02655V8H8.02655V9H7.02655V10H6.02655V11H5.02655V12H4.02655V13.0101H3.02655V14H1.02655V10.9899H0.0265503V14V15H1.02655H4.03668V14H4.02655V13.9848H5.02655V12.9899H6.02655V12H7.02655V11.0101H8.02655V10.0101H9.02655V9.00507H10.0266V7.98987H11.0164V7H12.0164V8.01013H13.0164V8H13.0266V9H14.0266V8V7H13.0266V6V5H14.0266V4H15.0266V3V2.01013V2V1.01013H14.0266V2V2.01013V3V4H13.0266H12.0266V5H11.0266V4H10.0266V3.01013H11.0266ZM3.03162 9.01013H2.03162V10H1.03162V12H2.03162V11H3.03162V9.01013Z" fill="black"/>
+          </svg>      
+          </label>  
+          <div id = "pencil-color-picker-container"></div>
+          <div class = "sub-ui-button" onClick="undoDrawing()">
+            <svg width="15" height="14" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M4 0H3V1H2V2H1V3H0V4H1V5H2V6H3V7H4V5H7V6H8V10H9H11V5V4H10V3H9V2H4V0Z" fill="currentColor"/>
+              </svg>
+          </div> 
+          <div class = "sub-ui-button" onClick="redoDrawing()">
+            <svg width="15" height="14" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M7 0H8V1H9V2H10V3H11V4H10V5H9V6H8V7H7V5H4V6H3V10H2H0V5V4H1V3H2V2H7V0Z" fill="currentColor"/>
+              </svg>              
+          </div>
+          
+          <div class = "sub-ui-button" onClick="resetDrawing()">
+            <svg width="15" height="15" viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M6.15503 0.868011H5.15503V1.86801H1.15503V2.86801L0.155029 2.86801V3.86801L1.15503 3.86801V14.868V15.868H11.155V14.868V3.86801H12.155V2.86801H11.155V1.86801H7.15503V0.868011H6.15503ZM10.155 3.86801H9.15503L9.15503 14.868H10.155L10.155 3.86801ZM8.15503 3.86801H6.65503L6.65503 14.868H8.15503L8.15503 3.86801ZM5.65503 3.86801H4.15503L4.15503 14.868H5.65503L5.65503 3.86801ZM3.15503 3.86801H2.15503L2.15503 14.868H3.15503L3.15503 3.86801Z" fill="currentColor"/>
+              </svg>    
+          </div>
+        </div>
+        <div class = 'subui' id='bucketui'>
+          <label for = 'bgColorPicker'>
+            <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.0266 0H12.0266H13.0266H14.0266V1H13.0266H12.0266H11.0266V0ZM11.0266 1V2H10.0266V1H11.0266ZM11.0266 3.01013V2.01013H9.02655V2H8.02655V1.01013H7.02655H6.02655V2.01013H7.02655V3.01013H8.02655V4V4.02026H7.02655V5.01013H6.03668V6.01013H5.03668V7H4.03668V8.01013H3.03668V10H4.03668V9H5.03668V8H6.03668V7H7.03668V6H8.02655V5H9.02655V6H10.0164V7H9.02655V8H8.02655V9H7.02655V10H6.02655V11H5.02655V12H4.02655V13.0101H3.02655V14H1.02655V10.9899H0.0265503V14V15H1.02655H4.03668V14H4.02655V13.9848H5.02655V12.9899H6.02655V12H7.02655V11.0101H8.02655V10.0101H9.02655V9.00507H10.0266V7.98987H11.0164V7H12.0164V8.01013H13.0164V8H13.0266V9H14.0266V8V7H13.0266V6V5H14.0266V4H15.0266V3V2.01013V2V1.01013H14.0266V2V2.01013V3V4H13.0266H12.0266V5H11.0266V4H10.0266V3.01013H11.0266ZM3.03162 9.01013H2.03162V10H1.03162V12H2.03162V11H3.03162V9.01013Z" fill="black"/>
+            </svg>     
+          </label>
+        </div>
+        <div class = 'subui' id='filtersui'>
+          <div id='filter-select-container'></div>
+          <div id='filter-slider-container'></div>
+        </div>
+      </div>
+
+      <div class = 'alert-container' id='about-menu'>
+        <p>p5 Photo</p>
+        <p>
+          @ Drew Brown <br>
+          @ V 1.0
+        </p>
+        <div id='confirm-button-container'>
+        <div onClick = "closeAlert('lock-confirm')" class="confirm-button">Report Bug</div><div class="confirm-button primary-action" onClick = "closeAlert('about-menu')">Close</div>
+        </div>
+      </div>
+
+      <div class = 'alert-container' id='delete-confirm'>
+        <p>!! WARNING !!</p>
+        <p>Are you sure you want to clear the canvas?</p>
+        <div id='confirm-button-container'>
+        <div onClick = "clearCanvas()" class="confirm-button">Yes</div><div class="confirm-button primary-action" onClick = "closeAlert('delete-confirm')">No</div>
+        </div>
+      </div>
+
+      <div class = 'alert-container' id='unsaved-drawing-confirm'>
+        <p>!! WARNING !!</p>
+        <p>In order for drawing to render to canvas, you must press "Save Layer"</p>
+        <div id='confirm-button-container'>
+        <div onClick = "saveDrawing()" class="confirm-button">Save Layer</div><div class="confirm-button primary-action" onClick = "closeAlert('unsaved-drawing-confirm')">Cancel</div>
+        </div>
+      </div>
+
+      <div class = 'alert-container' id='lock-confirm'>
+        <p>To use image filters, the canvas must be locked.</p>
+        <p class = 'tool-tip'>Images and drawings will not be editable until filters are reset.</p>
+        <div id='confirm-button-container'>
+        <div onClick = "closeAlert('lock-confirm')" class="confirm-button">Continue Editing</div><div class="confirm-button primary-action" onClick = "lockCan()">Lock</div>
+        </div>
+      </div>
+
+      <div class = 'alert-container' id='filter-confirm'>
+        <p>!! WARNING !!</p>
+        <p>Applying filters will permanently lock the canvas. Anything you have drawn or uploaded will not be able to be edited.</p>
+        <p>This cannot be undone!</p>
+        <div id='confirm-button-container'>
+        <div onClick = "closeAlert('filter-confirm')" class="confirm-button">Cancel</div><div class="confirm-button primary-action" onClick = "saveFilters()">Apply</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

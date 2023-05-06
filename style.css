@@ -1,0 +1,385 @@
+@font-face {
+  font-family: 'Chicago Pixel';
+  src: url('fonts/sysfont.woff2') format('woff2'),
+       url('fonts/sysfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+canvas {
+  display: block;
+}
+
+body{
+  background-image: url(imgs/bg-texture.jpg);
+  background-repeat: repeat;
+  background-size: 2%;
+  font-family: 'Chicago Pixel';
+}
+
+#menu-bar{
+  background: #fff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 30px;
+  align-items: center;
+  border: 1px solid #000;
+  padding-left: 5px;
+}
+
+#apple-icon-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0px 10px;
+  cursor: pointer;
+}
+
+#apple-icon-container:active{
+  background: #000;
+  color: #fff;
+}
+
+.menu-bar-item{
+  height: 100%;
+  position: relative;
+}
+
+.menu-bar-item p{
+  padding: 0px;
+  margin: 0px;
+  cursor: pointer;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+}
+
+.menu-bar-sub{
+  position: absolute;
+  appearance: none;
+  left: 0px;
+  top: 30px;
+  width: 100px;
+  background: #fff;
+  list-style-type: none;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  filter: drop-shadow(2px 2px 0px #6a6a6a);
+  z-index: 100;
+  padding: 0px;
+  display: none;
+}
+
+.menu-bar-sub li{
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+.menu-bar-sub li:hover{
+  background: #000;
+  color: #fff;
+}
+
+/* .menu-bar-item p:hover{
+  background: #000;
+  color: #fff;
+} */
+
+#photoshop-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 50px;
+  position: relative;
+}
+input[type=file] {
+  opacity: 0;
+  width: 0.1px;
+  height: 0.1px;
+  position: absolute;
+}
+
+#sketch-holder{
+  border: 1px solid #000;
+  width: fit-content;
+  margin-left: 20px;
+  filter: drop-shadow(2px 2px 0px #6a6a6a)
+}
+
+#toolbars{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#ui-container{
+  background: #fff;
+  padding: 4px;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border: 1px solid black;
+  filter: drop-shadow(2px 2px 0px #6a6a6a);
+  position: relative;
+}
+
+#ui-cover{
+  background: #000;
+  opacity: 50%;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  display: none;
+}
+
+.toolbar-element{
+  display: block;
+  width: 30px;
+  height: 26px;
+  border: 1px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  cursor: pointer;
+  border-bottom: none;
+}
+
+#last-element{
+  border-bottom: 1px solid black;
+}
+
+.toolbar-element:hover{
+  background: #000;
+  color: #fff;
+}
+
+#ui-container label{
+  display: block;
+  width: 30px;
+  height: 26px;
+  border: 1px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  cursor: pointer;
+  border-bottom: none;
+}
+
+#ui-container label:hover{
+  background: #000;
+  color: #fff;
+}
+
+#sketch-menu-bar{
+  position: relative;
+  height: 24px;
+  border-bottom: 1px solid black;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.menu-bar-line{
+  width: 100%;
+  height: 1px;
+  background: #000;
+}
+
+#sketch-menu-bar h1{
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+  position: absolute;
+  background: #fff;
+  height: 100%;
+  padding: 0px 10px;
+  display: flex;
+  align-items: center;
+}
+
+#active{
+  background: #000;
+  color: #fff;
+}
+
+.subui{
+  display: none;
+  background: #fff;
+  flex-direction: row;
+  align-items: center;
+  padding: 4px 10px;
+  border-bottom: 1px solid black;
+  height: 27px;
+  font-size: 12pt;
+  gap: 10px;
+}
+
+.subui input{
+  width: 27px;
+  display: block;
+}
+
+#primary-sub-ui-button{
+  background: #000;
+  color: #fff;
+}
+
+
+input[type=range] {
+  appearance: none;
+  display: block;
+  background: #000;
+  width: 100px;
+  height: 6px;
+}
+
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance: slider-vertical;
+  appearance: none;
+  width: 20px; 
+  height: 20px;
+  background: #fff;
+  cursor: pointer;
+  border: 1px solid #000;
+}
+
+input[type=color]{
+  border: none;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid black;
+  padding: 0px;
+  appearance: none;
+}
+
+input[type=color]::-webkit-color-swatch{
+  border: none;
+}
+
+.defaultui{
+  padding: 4px;
+  background: #fff;
+  border-bottom: 1px solid black;
+  height: 27px;
+  font-size: 12pt;
+  display: flex;
+  align-items: center;
+}
+
+.tool-tip{
+  color: rgba(0,0,0,0.5)
+}
+
+.defaultui p{
+  margin: 0px 5px;
+  padding: 0;
+}
+
+
+#slider-container{
+  display: flex;
+  align-items: center;
+  height: fit-content;
+}
+
+.alert-container{
+  position: absolute;
+  background: #fff;
+  border: 1px solid black;
+  width: 300px;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%,-50%);
+  padding: 10px;
+  filter: drop-shadow(2px 2px 0px #6a6a6a);
+  display: none;
+  z-index: 100;
+}
+
+#confirm-button-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  width: 100%;
+  gap: 10px;
+}
+
+.confirm-button{
+  padding: 5px 15px;
+  border: 1px solid black;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.confirm-button:hover{
+  background: #000;
+  color: #fff;
+}
+
+.primary-action{
+  background: #000;
+  color: #fff;
+}
+
+.sub-ui-button{
+  padding: 5px 15px;
+  border: 1px solid black;
+  background: #fff;
+  border-radius: 2px;
+  cursor: pointer;
+  font-family: 'Chicago Pixel';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sub-ui-button:hover{
+  background: #000;
+  color: #fff;
+}
+
+#filter-select-container select{
+  padding: 4px 10px;
+  border: 1px solid black;
+  background: #fff;
+  border-radius: 2px;
+  cursor: pointer;
+  font-family: 'Chicago Pixel'
+}
+
+#undo-drawing-button{
+  width: 15px;
+  height: 27px;
+  background-color: #000;
+  -webkit-mask-image: url('icons/undo.svg');
+  mask-image: url('icons/undo.svg');
+  mask-size: 15px;
+  -webkit-mask-size: 15px;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-position: center center;
+  -webkit-mask-position: center center;
+  border: 1px solid black;
+}
+
+#undo-drawing-button:hover{
+  background: #fff;
+}
